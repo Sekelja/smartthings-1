@@ -138,6 +138,10 @@ def configure() {
     cmds << zwave.configurationV1.configurationSet(configurationValue: [5], parameterNumber: 60, size: 1).format()
     cmds << zwave.configurationV1.configurationGet(parameterNumber: 60).format() 
     
+    // Turn off LED 
+    cmds << zwave.configurationV1.configurationSet(configurationValue: [1], parameterNumber: 0, size: 1).format()
+    cmds << zwave.configurationV1.configurationGet(parameterNumber: 0).format() 
+    
     cmds << response(zwave.batteryV1.batteryGet())
     cmds << response(zwave.versionV1.versionGet().format())
     cmds << response(zwave.manufacturerSpecificV2.manufacturerSpecificGet().format())
