@@ -116,7 +116,7 @@ private setScene() {
     	// Off
     	if(switchState == "off") {
         switches[i].off()
-      } else if (myData.colorMode == "White) { // White light
+      } else if (myData.colorMode == "White") { // White light
           switches[i].on()
           switches[i].setColorTemperature(myData.colorTemperature.toInteger())
           switches[i].setLevel(myData.dimmerLevel.toInteger())
