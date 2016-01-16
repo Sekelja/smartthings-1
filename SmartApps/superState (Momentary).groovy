@@ -426,17 +426,23 @@ def setScene(sceneID,turnOn,restore){
 							}
 							//log.debug "${stDevice.displayName}: crntEqualsSaved:${crntEqualsSaved} crntEqualsScene:${crntEqualsScene}" 
 						}
-            			if (turnOn){
+        					if (turnOn){
 							// scene on request            
 							if (logInfo) log.info "scene on request for ${sceneID} ${stDevice.displayName}"
 							//this device goes on
 							if (sceneMap.switch == "on"){
-                                // White added by Giles
-                                if (sceneMap.colorMode == "White") {
-                                  stDevice.on()
-                                  stDevice.setColorTemperature(sceneMap.colorTemperature)
-                                  stDevice.setLevel(sceneMap.level)
-                                }
+				                                // White added by Giles
+				                                if (sceneMap.colorMode == "White") {
+									stDevice.on()
+									stDevice.setColorTemperature(sceneMap.colorTemperature)
+									stDevice.setLevel(sceneMap.level)
+				                                }
+				                                // Warm white
+				                                else if (sceneMap.colorTemperature != null && sceneMap.color == null) {
+				                                	stDevice.on()
+									stDevice.setColorTemperature(sceneMap.colorTemperature)
+									stDevice.setLevel(sceneMap.level)
+				                                }
 								//RGBW
 								else if (sceneMap.whiteLevel) {
 									//log.debug "RGBW detected, map:${sceneMap}"
@@ -444,7 +450,7 @@ def setScene(sceneID,turnOn,restore){
 									def colorMap = [hex:sceneMap.color,level:sceneMap.level]
 									stDevice.setColor(colorMap)
 									stDevice.setWhiteLevel(sceneMap.whiteLevel)
-                                    stDevice.setLevel(sceneMap.level)
+                                    					stDevice.setLevel(sceneMap.level)
 									log.debug "RGBW:${stDevice.displayName}, ON"
 								//color
 								} else if (sceneMap.color) {
