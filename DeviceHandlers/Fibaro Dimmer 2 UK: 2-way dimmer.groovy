@@ -228,18 +228,17 @@ def configureAfterSecure() {
     log.debug "configureAfterSecure()"
         secureSequence([
 		zwave.configurationV1.configurationSet(parameterNumber: 20, size: 1, scaledConfigurationValue: 2),	// Enable Dimmer to work with 3 Position Momentary Switch
-		// zwave.configurationV1.configurationSet(parameterNumber: 35, size: 1, scaledConfigurationValue: 2),	// Auto Calibration (0=No after Power On, 1=On First Power On, 2=On Each Power On)
 		zwave.configurationV1.configurationSet(parameterNumber: 32, size: 1, scaledConfigurationValue: 0),	// On/Off Mode (0=Dimmer,1=On/Off,2=Auto)
 		zwave.configurationV1.configurationSet(parameterNumber: 8, size: 2, scaledConfigurationValue: 1),	// Dimming speed (x10 ms)				
-        zwave.configurationV1.configurationSet(parameterNumber: 1, size: 1, scaledConfigurationValue: 5),	// Minimum dim
+        	zwave.configurationV1.configurationSet(parameterNumber: 1, size: 1, scaledConfigurationValue: 5),	// Minimum dim
 
 
 
 
 		// Register for Group 1
-        zwave.associationV2.associationSet(groupingIdentifier:1, nodeId: [zwaveHubNodeId]),
-        // Register for Group 2
-        zwave.associationV2.associationSet(groupingIdentifier:2, nodeId: [zwaveHubNodeId]),
+        	zwave.associationV2.associationSet(groupingIdentifier:1, nodeId: [zwaveHubNodeId]),
+        	// Register for Group 2
+        	zwave.associationV2.associationSet(groupingIdentifier:2, nodeId: [zwaveHubNodeId]),
 	])
 }
 
